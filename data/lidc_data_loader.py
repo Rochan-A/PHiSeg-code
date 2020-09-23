@@ -137,8 +137,8 @@ def load_and_maybe_process_data(input_file,
 
 if __name__ == '__main__':
 
-    input_file = '/itet-stor/baumgach/bmicdatasets-originals/Originals/LIDC-IDRI/data_lidc.pickle'
-    preprocessing_folder = '/srv/glusterfs/baumgach/preproc_data/lidc'
+    input_file = 'data_lidc.pickle'
+    preprocessing_folder = 'lidc'
 
     d = load_and_maybe_process_data(input_file, preprocessing_folder, force_overwrite=True)
 

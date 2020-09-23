@@ -32,8 +32,8 @@ def setup_GPU_environment():
             logging.info('Setting CUDA_VISIBLE_DEVICES variable...')
 
             # This command is multi GPU compatible:
-            os.environ["CUDA_VISIBLE_DEVICES"] = ','.join(os.environ["SGE_GPU"].split('\n'))
-            logging.info('SGE_GPU is %s' % os.environ['SGE_GPU'])
+            os.environ["CUDA_VISIBLE_DEVICES"] = '0' #','.join(os.environ["SGE_GPU"].split('\n'))
+            #logging.info('SGE_GPU is %s' % os.environ['SGE_GPU'])
             logging.info('CUDA_VISIBLE_DEVICES is %s' % os.environ['CUDA_VISIBLE_DEVICES'])
 
     else:

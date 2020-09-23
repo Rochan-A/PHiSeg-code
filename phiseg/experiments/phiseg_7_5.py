@@ -20,17 +20,17 @@ max_channel_power = 4  # max number of channels will be n0*2**max_channel_power
 
 # Data settings
 data_identifier = 'lidc'
-preproc_folder = '/srv/glusterfs/baumgach/preproc_data/lidc'
-data_root = '/itet-stor/baumgach/bmicdatasets-originals/Originals/LIDC-IDRI/data_lidc.pickle'
+preproc_folder = 'lidc'
+data_root = 'data_lidc.pickle'
 dimensionality_mode = '2D'
 image_size = (128, 128, 1)
 nlabels = 2
 num_labels_per_subject = 4
 
-augmentation_options = {'do_flip_lr': True,
-                        'do_flip_ud': True,
-                        'do_rotations': True,
-                        'do_scaleaug': True,
+augmentation_options = {'do_flip_lr': False,
+                        'do_flip_ud': False,
+                        'do_rotations': False,
+                        'do_scaleaug': False,
                         'nlabels': nlabels}
 
 # training
