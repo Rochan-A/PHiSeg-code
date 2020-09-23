@@ -68,6 +68,9 @@ def prepare_data(input_file, output_file):
 
     unique_subjects = np.unique(series_uid)
 
+    unique_subjects = unique_subjects[:100] # Modify value if you dont want to
+                                            # use the whole dataset (size = ~840)
+
     split_ids = {}
     train_and_val_ids, split_ids['test'] = train_test_split(unique_subjects, test_size=0.2)
     split_ids['train'], split_ids['val'] = train_test_split(train_and_val_ids, test_size=0.2)
@@ -85,17 +88,18 @@ def prepare_data(input_file, output_file):
 
     for key, value in data.items():
 
-        s_id = value['series_uid']
+        if value['series_uid'] in unique_subjects:
+            s_id = value['series_uid']
 
-        tt = find_subset_for_id(split_ids, s_id)
+            tt = find_subset_for_id(split_ids, s_id)
 
-        images[tt].append(value['image'].astype(float)-0.5)
+            images[tt].append(value['image'].astype(float)-0.5)
 
-        lbl = np.asarray(value['masks'])  # this will be of shape 4 x 128 x 128
-        lbl = lbl.transpose((1,2,0))
+            lbl = np.asarray(value['masks'])  # this will be of shape 4 x 128 x 128
+            lbl = lbl.transpose((1,2,0))
 
-        labels[tt].append(lbl)
-        uids[tt].append(hash(s_id))  # Checked manually that there are no collisions
+            labels[tt].append(lbl)
+            uids[tt].append(hash(s_id))  # Checked manually that there are no collisions
 
     for tt in ['test', 'train', 'val']:
 
