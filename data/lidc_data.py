@@ -4,16 +4,18 @@
 import numpy as np
 from data import lidc_data_loader
 from data.batch_provider import BatchProvider
+import h5py
 
 class lidc_data():
 
     def __init__(self, exp_config):
 
-        data = lidc_data_loader.load_and_maybe_process_data(
-            input_file=exp_config.data_root,
-            preprocessing_folder=exp_config.preproc_folder,
-            force_overwrite=False,
-        )
+        # data = lidc_data_loader.load_and_maybe_process_data(
+        #     input_file=exp_config.data_root,
+        #     preprocessing_folder=exp_config.preproc_folder,
+        #     force_overwrite=False,
+        # )
+        data = h5py.File(exp_config.data_root, 'r')
 
         self.data = data
 
